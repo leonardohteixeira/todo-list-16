@@ -11,16 +11,17 @@ import { Todo } from 'src/app/models/model/todo.model';
 @Component({
   selector: 'app-todo-card',
   standalone: true,
-  imports: [NgFor,
-            NgIf,
-            NgTemplateOutlet,
-            MatCardModule,
-            MatButtonModule,
-            MatIconModule,
-            MatTabsModule,
-          ],
+  imports: [
+    NgFor,
+    NgIf,
+    NgTemplateOutlet,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTabsModule,
+  ],
   templateUrl: './todo-card.component.html',
-  styleUrls: []
+  styleUrls: [],
 })
 export class TodoCardComponent implements OnInit {
   private todoSignalsService = inject(TodoSignalsService);
@@ -32,8 +33,10 @@ export class TodoCardComponent implements OnInit {
   }
 
   private getTodosInLocalStorage(): void {
-    const todoDatas = localStorage.getItem(TodoKeyLocalStorage.TODO_LIST) as string;
-    todoDatas && (this.todosSignal.set(JSON.parse(todoDatas)));
+    const todosDatas = localStorage.getItem(
+      TodoKeyLocalStorage.TODO_LIST
+    ) as string;
+    todosDatas && this.todosSignal.set(JSON.parse(todosDatas));
   }
 
   private saveTodosInLocalStorage(): void {
